@@ -35,7 +35,6 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
     }
 
 
-
     @Override
     public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
         //this method react  on /login url  and retrive body from request
@@ -81,6 +80,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
         //and add it to header
         System.out.println(jwtoken + " jwtoken");
         res.addHeader("Authorization", "Bearer " + jwtoken);
+        res.addHeader("Test", userDetails.getUsername());
 
     }
 }

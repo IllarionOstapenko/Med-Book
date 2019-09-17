@@ -4,6 +4,7 @@ import com.book.medecinebook.dao.UserDAO;
 import com.book.medecinebook.models.User;
 import com.book.medecinebook.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userDAO.findUserByUsername(username);
+    }
+    public User authUser() {
+        return userDAO.findByUsername(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
     }
 }

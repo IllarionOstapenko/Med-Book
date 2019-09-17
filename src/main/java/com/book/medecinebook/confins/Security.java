@@ -10,13 +10,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 
 @Configuration
 public class Security extends WebSecurityConfigurerAdapter {
@@ -37,12 +34,20 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers(HttpMethod.GET,"main/resources/**").permitAll()
+                .antMatchers(HttpMethod.GET,"main/resources/static/**").permitAll()
+                .antMatchers(HttpMethod.GET,"main/resources/static/*").permitAll()
+                .antMatchers(HttpMethod.GET,"/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/authUser").permitAll()
+                .antMatchers(HttpMethod.POST, "/test").permitAll()
                 .antMatchers(HttpMethod.GET, "/home").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/create/patient").permitAll()
                 .antMatchers(HttpMethod.POST, "/create/doctor").permitAll()
                 .antMatchers(HttpMethod.POST, "/create/laboratory").permitAll()
                 .antMatchers(HttpMethod.POST, "/create/user/photo").permitAll()
+//                .antMatchers(HttpMethod.GET, "/create/user/photo").permitAll()
                 .antMatchers(HttpMethod.GET, "/patients").hasRole("PATIENT")
                 .antMatchers(HttpMethod.GET, "/doctors").hasRole("DOCTOR")
                 .antMatchers(HttpMethod.GET, "/laboratories").hasRole("LABORATORY")
@@ -55,6 +60,7 @@ public class Security extends WebSecurityConfigurerAdapter {
 
 
     }
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -62,6 +68,7 @@ public class Security extends WebSecurityConfigurerAdapter {
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

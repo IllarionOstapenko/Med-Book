@@ -4,6 +4,7 @@ import com.book.medecinebook.models.CustomResponse;
 import com.book.medecinebook.models.Doctor;
 import com.book.medecinebook.services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
