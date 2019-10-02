@@ -6,6 +6,8 @@ import com.book.medecinebook.services.LaboratoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +16,16 @@ import java.util.List;
 public class LaboratoryServiceImpl implements LaboratoryService {
 
     @Autowired
-    LaboratoryDAO laboratoryDAO;
+    private LaboratoryDAO laboratoryDAO;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void create(Laboratory laboratory) {
-        if (laboratory != null) laboratoryDAO.save(laboratory);
+        if (laboratory != null)
+            laboratory.setPassword(passwordEncoder.encode(laboratory.getPassword()));
+
+        laboratoryDAO.save(laboratory);
 
     }
 

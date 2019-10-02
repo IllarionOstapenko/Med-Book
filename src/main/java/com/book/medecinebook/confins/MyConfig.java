@@ -1,23 +1,21 @@
 package com.book.medecinebook.confins;
 
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.io.File;
 
 @Configuration
-public class MyConfig extends WebMvcConfigurationSupport {
+public class MyConfig implements WebMvcConfigurer {
+    @Value("${upload.path:#{null}}")
+    private String uploadPath;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**")
-                .addResourceLocations(System.getProperty("user.dir") + File.separator + "src"
-                        + File.separator + "image");
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations("classpath:/static/" + uploadPath + "/");
     }
 }
 
-
-//+ File.separator + "resources" +
-//        File.separator + "static" + File.separator);

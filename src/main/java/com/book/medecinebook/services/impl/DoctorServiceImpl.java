@@ -2,11 +2,14 @@ package com.book.medecinebook.services.impl;
 
 import com.book.medecinebook.dao.DoctorDAO;
 import com.book.medecinebook.models.Doctor;
+import com.book.medecinebook.models.Speciality;
 import com.book.medecinebook.services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -14,9 +17,17 @@ import java.util.List;
 public class DoctorServiceImpl implements DoctorService {
     @Autowired
     private DoctorDAO doctorDAO;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Override
-    public void create(Doctor doctor) { if (doctor != null) doctorDAO.save(doctor); }
+    public void create(Doctor doctor) {
+
+        if (doctor != null)
+            doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
+            doctorDAO.save(doctor);
+    }
 
     @Override
     public List<Doctor> findAll() {
@@ -32,5 +43,15 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return doctorDAO.findByUsername(username);
+    }
+
+    @Override
+    public List<Doctor> findAllSpeciality() {
+        return doctorDAO.findAll();
+    }
+
+    @Override
+    public List<Doctor> getAllDoctorsWithSpecialities() {
+        return doctorDAO.findUsersBySpeciality();
     }
 }

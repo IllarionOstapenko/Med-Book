@@ -8,7 +8,6 @@ public class MedecineBookApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MedecineBookApplication.class, args);
-        System.out.println(System.getProperty("user.dir"));
 
     }
 }

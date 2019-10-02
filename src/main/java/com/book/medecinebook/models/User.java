@@ -1,10 +1,8 @@
 package com.book.medecinebook.models;
 
-import com.book.medecinebook.constants.gender.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.joda.time.DateTime;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 
@@ -25,16 +24,16 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(length = 25)
     private String name;
     @Column(unique = true)
     private String username;
     private String password;
-    private int phone;
-    private DateTime dateOfBirth;
+    @Column(length = 15)
+    private String phone;
+    private Date dateOfBirth;
     @Enumerated(EnumType.STRING)
     private Role role;
-
-
 
 
     @Override
@@ -63,4 +62,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return false;
     }
+
+
 }

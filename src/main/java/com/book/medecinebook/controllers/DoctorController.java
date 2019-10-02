@@ -2,6 +2,7 @@ package com.book.medecinebook.controllers;
 
 import com.book.medecinebook.models.CustomResponse;
 import com.book.medecinebook.models.Doctor;
+import com.book.medecinebook.models.Speciality;
 import com.book.medecinebook.services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,13 +18,9 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @PostMapping("/create/doctor")
     public CustomResponse save(@RequestBody Doctor doctor) {
         System.out.println(doctor);
-        doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
         doctorService.create(doctor);
         System.out.println(doctor.getAuthorities());
         return new CustomResponse("ok!", true);
@@ -35,5 +32,10 @@ public class DoctorController {
     }
 
 
+    @GetMapping("/text")
+    public List<Doctor> test() {
+        System.out.println("lox");
+        return doctorService.getAllDoctorsWithSpecialities();
+    }
 
 }

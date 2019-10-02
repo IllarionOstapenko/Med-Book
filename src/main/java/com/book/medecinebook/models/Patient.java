@@ -8,10 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,20 +19,15 @@ import java.util.List;
 @NoArgsConstructor
 @DiscriminatorValue("PATIENT")
 public class Patient extends User {
-
+    @Column(length = 25)
     private String surname;
+    @Column(length = 25)
     private String fatherName;
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private String image;
     @Enumerated(EnumType.STRING)
     private Role role;
-
-
-
-
-
-
 
 
     @Override

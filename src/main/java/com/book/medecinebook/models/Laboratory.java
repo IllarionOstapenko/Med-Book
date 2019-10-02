@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.util.ArrayList;
@@ -18,11 +19,15 @@ import java.util.List;
 @NoArgsConstructor
 @DiscriminatorValue("LABORATORY")
 public class Laboratory extends User {
-
+    @Column(length = 50)
     private String region;
+    @Column(length = 50)
     private String district;
+    @Column(length = 25)
     private String city;
+    @Column(length = 50)
     private String street;
+    @Column(length = 25)
     private String build;
     private Role role;
 

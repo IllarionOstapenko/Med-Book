@@ -15,13 +15,10 @@ public class LaboratoryController {
 
     @Autowired
     LaboratoryService laboratoryService;
-    @Autowired
-    PasswordEncoder passwordEncoder;
 
     @PostMapping("/create/laboratory")
     public CustomResponse save(@RequestBody Laboratory laboratory) {
         System.out.println(laboratory);
-        laboratory.setPassword(passwordEncoder.encode(laboratory.getPassword()));
         laboratoryService.create(laboratory);
         System.out.println(laboratory.getAuthorities());
         return new CustomResponse("ok!", true);

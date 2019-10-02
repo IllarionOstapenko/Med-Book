@@ -1,5 +1,6 @@
 package com.book.medecinebook.services;
 
+import com.book.medecinebook.models.Doctor;
 import com.book.medecinebook.models.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -13,4 +14,9 @@ public interface UserService extends UserDetailsService {
     User findOneById(Integer id);
 
     User authUser();
+
+    List<User> get();
+
+    List<Doctor> getUsersByName();
+
 }

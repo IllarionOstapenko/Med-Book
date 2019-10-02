@@ -6,6 +6,8 @@ import com.book.medecinebook.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jdk.nashorn.internal.ir.debug.JSONWriter;
+import org.json.JSONObject;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,6 +16,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import sun.plugin.javascript.JSObject;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -23,8 +26,11 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Date;
 
+import static org.springframework.data.repository.init.ResourceReader.Type.JSON;
+
 public class LoginFilter extends AbstractAuthenticationProcessingFilter {
     private UserService userDetailsService;
+//    private JSONObject jsonObject;
 
     public LoginFilter(String url, AuthenticationManager authManager, UserService userDetailsService) {
         super(new AntPathRequestMatcher(url));
@@ -48,7 +54,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
         // if auth process if success we jump to line 65 successfulAuthentication()
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        user.getUsername(),
+                            user.getUsername(),
                         user.getPassword(),
                         Collections.emptyList()
                 )
@@ -65,6 +71,11 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 
         // if in prev method we was authenticate
         // we create token
+        UserDetails user =  userDetailsService.loadUserByUsername(auth.getName());
+        JSONObject jsonObject = new JSONObject(user);
+        System.out.println("-----------------------");
+        System.out.println(user);
+        System.out.println("-----------------------");
         UserDetails userDetails = userDetailsService.loadUserByUsername(auth.getName());
         String jwt_user_token = userDetails.getUsername() + " ";
         for (GrantedAuthority authority : userDetails.getAuthorities()) {
@@ -75,12 +86,14 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
         String jwtoken = Jwts.builder()
                 .setSubject(jwt_user_token)
                 .signWith(SignatureAlgorithm.HS512, "yes".getBytes())
-                .setExpiration(new Date(System.currentTimeMillis() + 200000))
+//time how much token is live
+//                .setExpiration(new Date(System.currentTimeMillis() + 5000))
                 .compact();
         //and add it to header
         System.out.println(jwtoken + " jwtoken");
         res.addHeader("Authorization", "Bearer " + jwtoken);
-        res.addHeader("Test", userDetails.getUsername());
+//        res.addHeader("Test", "TEST " + user.toString());
+//        res.addHeader("Test", jsonObject.toString());
 
     }
 }

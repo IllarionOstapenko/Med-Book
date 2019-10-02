@@ -6,6 +6,7 @@ import com.book.medecinebook.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +15,14 @@ import java.util.List;
 public class PatientServiceImpl implements PatientService {
     @Autowired
     private PatientDAO patientDAO;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void create(Patient patient) {
-        if (patient != null) patientDAO.save(patient);
+        if (patient != null)
+            patient.setPassword(passwordEncoder.encode(patient.getPassword()));
+        patientDAO.save(patient);
     }
 
     @Override

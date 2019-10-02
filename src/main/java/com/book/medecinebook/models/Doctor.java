@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,9 +19,12 @@ import java.util.List;
 @DiscriminatorValue("DOCTOR")
 
 public class Doctor extends User {
+    @Column(length = 25)
     private String surname;
+    @Column(length = 25)
     private String fatherName;
-    private String speciality;
+    @Enumerated(EnumType.STRING)
+    private Speciality speciality;
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private String image;
@@ -35,8 +35,6 @@ public class Doctor extends User {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(role.name()));
-
-//        authorities.add(new SimpleGrantedAuthority(Role.DOCTOR.name()));
         return authorities;
     }
 
@@ -56,5 +54,7 @@ public class Doctor extends User {
     }
 
     @Override
-    public boolean isEnabled() { return true; }
+    public boolean isEnabled() {
+        return true;
+    }
 }
