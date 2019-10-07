@@ -1,5 +1,6 @@
 package com.book.medecinebook.models;
 
+import com.book.medecinebook.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

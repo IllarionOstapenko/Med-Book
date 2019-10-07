@@ -1,12 +1,11 @@
 package com.book.medecinebook.controllers;
 
+import com.book.medecinebook.enums.Speciality;
+import com.book.medecinebook.dao.DoctorDAO;
 import com.book.medecinebook.models.CustomResponse;
 import com.book.medecinebook.models.Doctor;
-import com.book.medecinebook.models.Speciality;
 import com.book.medecinebook.services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +16,8 @@ public class DoctorController {
 
     @Autowired
     private DoctorService doctorService;
+    @Autowired
+    private DoctorDAO doctorDAO;
 
     @PostMapping("/create/doctor")
     public CustomResponse save(@RequestBody Doctor doctor) {
@@ -32,10 +33,14 @@ public class DoctorController {
     }
 
 
-    @GetMapping("/text")
-    public List<Doctor> test() {
-        System.out.println("lox");
-        return doctorService.getAllDoctorsWithSpecialities();
+    @GetMapping("/specialities")
+    public Speciality[] getSpecialities() {
+        return Speciality.values();
+    }
+
+    @GetMapping("/doctor/speciality/{speciality}")
+    public List<Doctor> getDoctorsBySpeciality(@PathVariable String speciality) {
+        return doctorService.findBySpeciality(Speciality.valueOf(speciality));
     }
 
 }

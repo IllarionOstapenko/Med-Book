@@ -2,7 +2,6 @@ package com.book.medecinebook.controllers;
 
 import com.book.medecinebook.models.Doctor;
 import com.book.medecinebook.models.Patient;
-import com.book.medecinebook.models.Speciality;
 import com.book.medecinebook.models.User;
 import com.book.medecinebook.services.PatientService;
 import com.book.medecinebook.services.UserService;

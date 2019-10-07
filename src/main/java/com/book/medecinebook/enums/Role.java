@@ -1,4 +1,4 @@
-package com.book.medecinebook.models;
+package com.book.medecinebook.enums;
 
 public enum Role {
     ROLE_PATIENT,

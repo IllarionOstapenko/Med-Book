@@ -1,15 +1,14 @@
 package com.book.medecinebook.services.impl;
 
+import com.book.medecinebook.enums.Speciality;
 import com.book.medecinebook.dao.DoctorDAO;
 import com.book.medecinebook.models.Doctor;
-import com.book.medecinebook.models.Speciality;
 import com.book.medecinebook.services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class DoctorServiceImpl implements DoctorService {
 
         if (doctor != null)
             doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
-            doctorDAO.save(doctor);
+        doctorDAO.save(doctor);
     }
 
     @Override
@@ -46,12 +45,12 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<Doctor> findAllSpeciality() {
-        return doctorDAO.findAll();
+    public List<Doctor> getAllDoctorsWithSpecialities(String speciality) {
+        return null;
     }
 
     @Override
-    public List<Doctor> getAllDoctorsWithSpecialities() {
-        return doctorDAO.findUsersBySpeciality();
+    public List<Doctor> findBySpeciality(Speciality speciality) {
+        return doctorDAO.findBySpeciality(speciality);
     }
 }

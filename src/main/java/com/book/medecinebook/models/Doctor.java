@@ -1,6 +1,8 @@
 package com.book.medecinebook.models;
 
-import com.book.medecinebook.constants.gender.Gender;
+import com.book.medecinebook.enums.Gender;
+import com.book.medecinebook.enums.Role;
+import com.book.medecinebook.enums.Speciality;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,6 @@
 package com.book.medecinebook.dao;
 
 import com.book.medecinebook.models.Doctor;
-import com.book.medecinebook.models.Speciality;
 import com.book.medecinebook.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
