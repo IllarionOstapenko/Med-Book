@@ -4,13 +4,14 @@ import com.book.medecinebook.models.Patient;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PatientService extends UserDetailsService {
     void create(Patient patient);
 
     List<Patient> findAll();
 
-    Patient findOneById(Integer id);
+    Optional<Patient> findOneById(Integer id);
 }
 
 

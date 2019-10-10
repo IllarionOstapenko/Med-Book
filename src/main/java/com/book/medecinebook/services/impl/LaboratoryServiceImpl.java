@@ -1,12 +1,11 @@
 package com.book.medecinebook.services.impl;
 
-import com.book.medecinebook.dao.LaboratoryDAO;
+import com.book.medecinebook.repository.LaboratoryRepository;
 import com.book.medecinebook.models.Laboratory;
 import com.book.medecinebook.services.LaboratoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ import java.util.List;
 public class LaboratoryServiceImpl implements LaboratoryService {
 
     @Autowired
-    private LaboratoryDAO laboratoryDAO;
+    private LaboratoryRepository laboratoryRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -25,13 +24,13 @@ public class LaboratoryServiceImpl implements LaboratoryService {
         if (laboratory != null)
             laboratory.setPassword(passwordEncoder.encode(laboratory.getPassword()));
 
-        laboratoryDAO.save(laboratory);
+        laboratoryRepository.save(laboratory);
 
     }
 
     @Override
     public List<Laboratory> findAll() {
-        return laboratoryDAO.findAll();
+        return laboratoryRepository.findAll();
     }
 
     @Override
@@ -41,6 +40,6 @@ public class LaboratoryServiceImpl implements LaboratoryService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return laboratoryDAO.findByUsername(username);
+        return laboratoryRepository.findByUsername(username);
     }
 }

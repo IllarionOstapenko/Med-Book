@@ -3,6 +3,7 @@ package com.book.medecinebook.models;
 
 import com.book.medecinebook.enums.Gender;
 import com.book.medecinebook.enums.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,20 @@ public class Patient extends User {
     private String image;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "patient")
+    @JsonIgnore
+    private List<VisitToDoctor> visitToDoctorList = new ArrayList<VisitToDoctor>();
 
+//    @Override
+//    public String toString() {
+//        return "Patient{" +
+//                "surname='" + surname + '\'' +
+//                ", fatherName='" + fatherName + '\'' +
+//                ", gender=" + gender +
+//                ", image='" + image + '\'' +
+//                ", role=" + role +
+//                '}';
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

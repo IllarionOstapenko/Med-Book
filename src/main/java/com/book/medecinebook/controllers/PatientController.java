@@ -2,24 +2,24 @@ package com.book.medecinebook.controllers;
 
 import com.book.medecinebook.models.CustomResponse;
 import com.book.medecinebook.models.Patient;
+import com.book.medecinebook.models.VisitToDoctor;
 import com.book.medecinebook.services.PatientService;
 import com.book.medecinebook.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.book.medecinebook.services.VisitToDoctorService;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
+@AllArgsConstructor
 public class PatientController {
 
-    @Autowired
     private PatientService patientService;
-
-    @Autowired
     private UserService userService;
+    private VisitToDoctorService visitToDoctorService;
 
 
     @PostMapping("/create/patient")
@@ -42,5 +42,7 @@ public class PatientController {
         System.out.println(userService.loadUserByUsername(username));
         return userService.loadUserByUsername(username);
     }
+
+
 
 }

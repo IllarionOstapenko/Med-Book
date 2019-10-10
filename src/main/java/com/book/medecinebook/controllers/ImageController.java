@@ -1,8 +1,6 @@
 package com.book.medecinebook.controllers;
 
-import com.book.medecinebook.dao.UserDAO;
 import com.book.medecinebook.services.ImageService;
-import com.book.medecinebook.services.impl.ImageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

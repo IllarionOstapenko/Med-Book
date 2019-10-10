@@ -5,13 +5,14 @@ import com.book.medecinebook.models.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
     void create(User user);
 
     List<User> findAll();
 
-    User findOneById(Integer id);
+    Optional<User> findOneById(Integer id);
 
     User authUser();
 

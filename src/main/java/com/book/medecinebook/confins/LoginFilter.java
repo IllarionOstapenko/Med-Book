@@ -47,7 +47,9 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
         //then map it to model AccountCredential
         User user = new ObjectMapper()
                 .readValue(httpServletRequest.getInputStream(), User.class);
-//        System.out.println(user + "LOGIN FILTER");
+        System.out.println("_________________________");
+        System.out.println(user);
+        System.out.println("_________________________");
         // then  get default method getAuthenticationManager()
         // and set Authentication object based on data from creds object
 
@@ -71,11 +73,11 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 
         // if in prev method we was authenticate
         // we create token
-        UserDetails user =  userDetailsService.loadUserByUsername(auth.getName());
-        JSONObject jsonObject = new JSONObject(user);
-        System.out.println("-----------------------");
-        System.out.println(user);
-        System.out.println("-----------------------");
+//        UserDetails user =  userDetailsService.loadUserByUsername(auth.getName());
+//        JSONObject jsonObject = new JSONObject(user);
+//        System.out.println("-----------------------");
+//        System.out.println(user);
+//        System.out.println("-----------------------");
         UserDetails userDetails = userDetailsService.loadUserByUsername(auth.getName());
         String jwt_user_token = userDetails.getUsername() + " ";
         for (GrantedAuthority authority : userDetails.getAuthorities()) {

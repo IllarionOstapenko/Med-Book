@@ -1,8 +1,8 @@
-package com.book.medecinebook.dao;
+package com.book.medecinebook.repository;
 
 import com.book.medecinebook.models.Laboratory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface LaboratoryDAO extends JpaRepository<Laboratory, Integer> {
+public interface LaboratoryRepository extends JpaRepository<Laboratory, Integer> {
     Laboratory findByUsername(String username);
 }

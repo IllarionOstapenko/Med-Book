@@ -1,6 +1,6 @@
 package com.book.medecinebook.services.impl;
 
-import com.book.medecinebook.dao.UserDAO;
+import com.book.medecinebook.repository.UserRepository;
 import com.book.medecinebook.models.Doctor;
 import com.book.medecinebook.models.User;
 import com.book.medecinebook.services.UserService;
@@ -11,45 +11,46 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserDAO userDAO;
+    private UserRepository userRepository;
 
     @Override
     public void create(User user) {
         if (user != null)
-            userDAO.save(user);
+            userRepository.save(user);
     }
 
     @Override
     public List<User> findAll() {
-        return userDAO.findAll();
+        return userRepository.findAll();
     }
 
     @Override
-    public User findOneById(Integer id) {
-        return null;
+    public Optional<User> findOneById(Integer id) {
+        return userRepository.findById(id);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userDAO.findUserByUsername(username);
+        return userRepository.findUserByUsername(username);
     }
 
     public User authUser() {
-        return userDAO.findByUsername(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+        return userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
     }
 
     @Override
     public List<User> get() {
-        return userDAO.findAll();
+        return userRepository.findAll();
     }
 
     @Override
     public List<Doctor> getUsersByName() {
-        return userDAO.getUsersByName();
+        return userRepository.getUsersByName();
     }
 
 

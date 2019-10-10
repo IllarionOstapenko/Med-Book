@@ -1,4 +1,4 @@
-package com.book.medecinebook.dao;
+package com.book.medecinebook.repository;
 
 import com.book.medecinebook.enums.Speciality;
 import com.book.medecinebook.models.Doctor;
@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface DoctorDAO extends JpaRepository<Doctor, Integer> {
+public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
     Doctor findByUsername(String username);
 
+    Doctor findById(int integer);
 
 //    @Query("SELECT spec FROM Doctor spec where spec.speciality like :speciality")
 //    List<Doctor> findUsersBySpeciality(String speciality);

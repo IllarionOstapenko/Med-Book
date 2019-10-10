@@ -5,13 +5,14 @@ import com.book.medecinebook.models.Doctor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DoctorService extends UserDetailsService {
     void create(Doctor doctor);
 
     List<Doctor> findAll();
 
-    Doctor findOneById(Integer id);
+    Optional<Doctor> findOneById(Integer id);
 
 
     List<Doctor> getAllDoctorsWithSpecialities(String speciality);

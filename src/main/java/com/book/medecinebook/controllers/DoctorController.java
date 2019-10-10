@@ -1,7 +1,7 @@
 package com.book.medecinebook.controllers;
 
 import com.book.medecinebook.enums.Speciality;
-import com.book.medecinebook.dao.DoctorDAO;
+import com.book.medecinebook.repository.DoctorRepository;
 import com.book.medecinebook.models.CustomResponse;
 import com.book.medecinebook.models.Doctor;
 import com.book.medecinebook.services.DoctorService;
@@ -17,7 +17,7 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
     @Autowired
-    private DoctorDAO doctorDAO;
+    private DoctorRepository doctorRepository;
 
     @PostMapping("/create/doctor")
     public CustomResponse save(@RequestBody Doctor doctor) {
