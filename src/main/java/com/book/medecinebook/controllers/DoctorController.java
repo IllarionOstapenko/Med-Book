@@ -4,7 +4,9 @@ import com.book.medecinebook.enums.Speciality;
 import com.book.medecinebook.repository.DoctorRepository;
 import com.book.medecinebook.models.CustomResponse;
 import com.book.medecinebook.models.Doctor;
+import com.book.medecinebook.repository.UserRepository;
 import com.book.medecinebook.services.DoctorService;
+import com.book.medecinebook.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,8 @@ public class DoctorController {
     private DoctorService doctorService;
     @Autowired
     private DoctorRepository doctorRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/create/doctor")
     public CustomResponse save(@RequestBody Doctor doctor) {
@@ -28,7 +32,7 @@ public class DoctorController {
     }
 
     @GetMapping("/doctors")
-    public List<Doctor> patients() {
+    public List<Doctor> doctors() {
         return doctorService.findAll();
     }
 

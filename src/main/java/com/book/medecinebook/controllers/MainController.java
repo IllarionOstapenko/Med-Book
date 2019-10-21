@@ -3,25 +3,26 @@ package com.book.medecinebook.controllers;
 import com.book.medecinebook.models.Doctor;
 import com.book.medecinebook.models.Patient;
 import com.book.medecinebook.models.User;
+import com.book.medecinebook.repository.UserRepository;
 import com.book.medecinebook.services.PatientService;
 import com.book.medecinebook.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
+@AllArgsConstructor
 @RestController
 @CrossOrigin(origins = "*")
 public class MainController {
-    @Autowired
+
     private PatientService patientService;
-
-    @Autowired
     private UserService userService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/home")
     public List<Patient> home() {
@@ -32,11 +33,14 @@ public class MainController {
 
     @GetMapping("/authUser")
     public User authUser() {
+        System.out.println("Auth USER");
+//        this.userService.authUser().setDateOfBirth(userService.authUser().getDateOfBirth().plusDays(1));
         return userService.authUser();
     }
 
     @GetMapping("/getUsers")
     public List<User> get() {
+        System.out.println("GET USERS");
         return userService.get();
     }
 
@@ -45,8 +49,12 @@ public class MainController {
         return userService.getUsersByName();
     }
 
+    @GetMapping("/getAllUsers")
+    public List<User> getAllUsers() {
 
 
+        return userService.findAll();
+    }
 
 }
 

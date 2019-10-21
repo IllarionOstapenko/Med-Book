@@ -13,11 +13,6 @@ public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
 
     Doctor findById(int integer);
 
-//    @Query("SELECT spec FROM Doctor spec where spec.speciality like :speciality")
-//    List<Doctor> findUsersBySpeciality(String speciality);
-
-//    List<Doctor> findAllBySpeciality(String speciality);
-
     List<Doctor> findBySpeciality(Speciality speciality);
 
 }

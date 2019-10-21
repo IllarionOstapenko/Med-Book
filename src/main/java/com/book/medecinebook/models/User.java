@@ -4,7 +4,7 @@ import com.book.medecinebook.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.joda.time.LocalDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,14 +12,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
-
-@Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "USER")
 public class User implements UserDetails {
@@ -33,10 +31,13 @@ public class User implements UserDetails {
     private String password;
     @Column(length = 15)
     private String phone;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    public User(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

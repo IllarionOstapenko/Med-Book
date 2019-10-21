@@ -40,4 +40,9 @@ public class PatientServiceImpl implements PatientService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return patientRepository.findByUsername(username);
     }
+
+    @Override
+    public Patient findByUsername(String username) {
+        return patientRepository.findByUsername(username);
+    }
 }

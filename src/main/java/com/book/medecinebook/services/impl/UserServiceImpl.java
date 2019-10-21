@@ -1,8 +1,8 @@
 package com.book.medecinebook.services.impl;
 
-import com.book.medecinebook.repository.UserRepository;
 import com.book.medecinebook.models.Doctor;
 import com.book.medecinebook.models.User;
+import com.book.medecinebook.repository.UserRepository;
 import com.book.medecinebook.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> get() {
+//        userRepository.findAll().get().getDateOfBirth().plusDay(1);
         return userRepository.findAll();
     }
 

@@ -38,7 +38,6 @@ public class Doctor extends User {
     private List<VisitToDoctor> visitToDoctorList = new ArrayList<VisitToDoctor>();
 
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
@@ -65,4 +64,19 @@ public class Doctor extends User {
     public boolean isEnabled() {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "surname='" + surname + '\'' +
+                ", fatherName='" + fatherName + '\'' +
+                ", speciality=" + speciality +
+                ", gender=" + gender +
+                ", image='" + image + '\'' +
+                ", role=" + role +
+                ", dateOfBirth=" + getDateOfBirth() +
+                ", visitToDoctorList=" + visitToDoctorList +
+                '}';
+    }
 }
+

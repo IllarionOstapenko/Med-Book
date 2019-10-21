@@ -4,6 +4,7 @@ package com.book.medecinebook.models;
 import com.book.medecinebook.enums.Gender;
 import com.book.medecinebook.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,11 +16,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @DiscriminatorValue("PATIENT")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Patient extends User {
     @Column(length = 25)
     private String surname;
@@ -34,16 +36,6 @@ public class Patient extends User {
     @JsonIgnore
     private List<VisitToDoctor> visitToDoctorList = new ArrayList<VisitToDoctor>();
 
-//    @Override
-//    public String toString() {
-//        return "Patient{" +
-//                "surname='" + surname + '\'' +
-//                ", fatherName='" + fatherName + '\'' +
-//                ", gender=" + gender +
-//                ", image='" + image + '\'' +
-//                ", role=" + role +
-//                '}';
-//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -73,4 +65,16 @@ public class Patient extends User {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "surname='" + surname + '\'' +
+                ", fatherName='" + fatherName + '\'' +
+                ", gender=" + gender +
+                ", image='" + image + '\'' +
+                ", role=" + role +
+                ", dateOfBirth=" + getDateOfBirth() +
+                ", visitToDoctorList=" + visitToDoctorList +
+                '}';
+    }
 }
