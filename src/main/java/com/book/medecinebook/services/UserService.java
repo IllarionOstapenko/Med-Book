@@ -14,6 +14,7 @@ public interface UserService extends UserDetailsService {
 
     Optional<User> findOneById(Integer id);
 
+
     User authUser();
 
     List<User> get();

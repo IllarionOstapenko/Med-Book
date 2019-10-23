@@ -35,13 +35,15 @@ public class Patient extends User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "patient")
     @JsonIgnore
     private List<VisitToDoctor> visitToDoctorList = new ArrayList<VisitToDoctor>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "patient")
+    @JsonIgnore
+    private List<ResultOfAnalysis> resultOfAnalyses = new ArrayList<>();
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(role.name()));
-//        authorities.add(new SimpleGrantedAuthority(Role.ROLE_PATIENT.name()));
         return authorities;
     }
 

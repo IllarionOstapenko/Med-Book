@@ -9,6 +9,8 @@ import java.util.Optional;
 public interface PatientService extends UserDetailsService {
     void create(Patient patient);
 
+    Patient findById(int id);
+
     List<Patient> findAll();
 
     Optional<Patient> findOneById(Integer id);

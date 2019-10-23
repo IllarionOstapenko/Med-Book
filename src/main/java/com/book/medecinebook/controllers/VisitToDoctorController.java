@@ -2,6 +2,7 @@ package com.book.medecinebook.controllers;
 
 
 import com.book.medecinebook.models.CustomResponse;
+import com.book.medecinebook.models.Patient;
 import com.book.medecinebook.models.VisitToDoctor;
 import com.book.medecinebook.repository.VisitToDoctorRepository;
 import com.book.medecinebook.services.VisitToDoctorService;
@@ -18,6 +19,7 @@ public class VisitToDoctorController {
     private VisitToDoctorService visitToDoctorService;
 
     private VisitToDoctorRepository visitToDoctorRepository;
+
 
     @PostMapping("/create/visit&doctor={doctorId}&patient={patientId}")
     public CustomResponse createVisitToDoctor(@RequestBody VisitToDoctor visitToDoctor, @PathVariable int doctorId, @PathVariable int patientId) {
@@ -65,5 +67,17 @@ public class VisitToDoctorController {
     public List<VisitToDoctor> getAllByDateOfVisits() {
         return visitToDoctorRepository.findAllByDateOfVisit(LocalDate.now());
     }
+
+    @PostMapping("/conclusion&visitId={visitId}")
+    public CustomResponse saveConclusion(@RequestBody String conclusion, @PathVariable int visitId) {
+        final VisitToDoctor byId = visitToDoctorService.findById(visitId);
+        byId.setConclusion(conclusion);
+        System.out.println(conclusion);
+        System.out.println(visitId);
+        visitToDoctorService.save(byId);
+        return new CustomResponse("ok", true);
+    }
+
+
 
 }

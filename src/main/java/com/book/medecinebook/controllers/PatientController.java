@@ -45,4 +45,9 @@ public class PatientController {
         return patientService.findByUsername(username);
     }
 
+    @GetMapping("/getPatientById&patientId={patientId}")
+    public Patient findPatientById(@PathVariable int patientId) {
+        return patientService.findById(patientId);
+    }
+
 }

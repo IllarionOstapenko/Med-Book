@@ -8,6 +8,10 @@ import java.util.List;
 public interface VisitToDoctorService {
     void create(VisitToDoctor visitToDoctor, int doctorId, int patientId);
 
+    void save(VisitToDoctor visitToDoctor);
+
+    VisitToDoctor findById(int id);
+
     List<VisitToDoctor> findAll();
 
     List<VisitToDoctor> findAllByPatientId(int id);
@@ -17,5 +21,6 @@ public interface VisitToDoctorService {
     List<VisitToDoctor> findAllByPatientIdAndDateAfter(int id);
 
     List<VisitToDoctor> findAllByPatientAndDateBefore(int id);
+
 
 }

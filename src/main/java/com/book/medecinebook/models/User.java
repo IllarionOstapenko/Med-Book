@@ -4,12 +4,12 @@ import com.book.medecinebook.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.joda.time.LocalDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -34,10 +34,6 @@ public class User implements UserDetails {
     private LocalDate dateOfBirth;
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    public User(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

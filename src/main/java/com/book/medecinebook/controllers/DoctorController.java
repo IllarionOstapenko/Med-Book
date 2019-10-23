@@ -7,20 +7,19 @@ import com.book.medecinebook.models.Doctor;
 import com.book.medecinebook.repository.UserRepository;
 import com.book.medecinebook.services.DoctorService;
 import com.book.medecinebook.services.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @CrossOrigin(origins = "*")
 @RestController
 public class DoctorController {
 
-    @Autowired
     private DoctorService doctorService;
-    @Autowired
     private DoctorRepository doctorRepository;
-    @Autowired
     private UserRepository userRepository;
 
     @PostMapping("/create/doctor")

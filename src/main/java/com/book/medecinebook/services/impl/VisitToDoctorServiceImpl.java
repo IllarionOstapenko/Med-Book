@@ -27,6 +27,11 @@ public class VisitToDoctorServiceImpl implements VisitToDoctorService {
     }
 
     @Override
+    public void save(VisitToDoctor visitToDoctor) {
+        visitToDoctorRepository.save(visitToDoctor);
+    }
+
+    @Override
     public List<VisitToDoctor> findAll() {
         return visitToDoctorRepository.findAll();
     }
@@ -38,6 +43,11 @@ public class VisitToDoctorServiceImpl implements VisitToDoctorService {
 
     public List<VisitToDoctor> findAllByDate(LocalDate date) {
         return visitToDoctorRepository.findAllByDateOfVisit(date);
+    }
+
+    @Override
+    public VisitToDoctor findById(int id) {
+        return visitToDoctorRepository.findById(id);
     }
 
     @Override
