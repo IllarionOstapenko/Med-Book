@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ResultOfAnalysisRepository extends JpaRepository<ResultOfAnalysis, Integer> {
+    ResultOfAnalysis findById(int id);
 
     List<ResultOfAnalysis> findAllByPatientId(int id);
 

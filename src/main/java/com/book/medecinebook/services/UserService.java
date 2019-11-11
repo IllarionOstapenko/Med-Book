@@ -12,13 +12,10 @@ public interface UserService extends UserDetailsService {
 
     List<User> findAll();
 
-    Optional<User> findOneById(Integer id);
-
+    User findById(int id);
 
     User authUser();
 
-    List<User> get();
 
-    List<Doctor> getUsersByName();
 
 }

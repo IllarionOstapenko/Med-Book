@@ -21,38 +21,16 @@ import java.util.stream.Stream;
 @CrossOrigin(origins = "*")
 public class MainController {
 
-    private PatientService patientService;
     private UserService userService;
-
-    @GetMapping("/home")
-    public List<Patient> home() {
-
-        System.out.println("Home");
-        return patientService.findAll();
-    }
 
     @GetMapping("/authUser")
     public User authUser() {
         System.out.println("Auth USER");
-//        this.userService.authUser().setDateOfBirth(userService.authUser().getDateOfBirth().plusDays(1));
         return userService.authUser();
-    }
-
-    @GetMapping("/getUsers")
-    public List<User> get() {
-        System.out.println("GET USERS");
-        return userService.get();
-    }
-
-    @GetMapping("/get")
-    public List<Doctor> some() {
-        return userService.getUsersByName();
     }
 
     @GetMapping("/getAllUsers")
     public List<User> getAllUsers() {
-
-
         return userService.findAll();
     }
 

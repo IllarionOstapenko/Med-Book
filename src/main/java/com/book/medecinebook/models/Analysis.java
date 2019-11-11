@@ -22,8 +22,5 @@ public class Analysis {
     @NonNull
     @NotEmpty
     private String title;
-    @NonNull
-    @NotEmpty
     private String unit;
-
 }

@@ -4,10 +4,9 @@ import com.book.medecinebook.models.Analysis;
 import com.book.medecinebook.models.CustomResponse;
 import com.book.medecinebook.services.AnalysisService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "*")
 @AllArgsConstructor
@@ -16,8 +15,13 @@ public class AnalysisController {
     private AnalysisService analysisService;
 
     @PostMapping("/save/analysis")
-    public void save(@RequestBody Analysis analysis) {
+    public CustomResponse save(@RequestBody Analysis analysis) {
         analysisService.save(analysis);
-//        return new CustomResponse("Save analysis", true);
+        return new CustomResponse("Save analysis", true);
+    }
+
+    @GetMapping("/getAllAnalysis")
+    public List<Analysis> findAllAnalysis() {
+        return analysisService.findAll();
     }
 }

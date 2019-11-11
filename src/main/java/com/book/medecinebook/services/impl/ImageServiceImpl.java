@@ -27,7 +27,7 @@ public class ImageServiceImpl implements ImageService {
             log.error(e.getMessage());
         }
         if (image != null) {
-            File uploadFolder = new ClassPathResource("static" + File.separator + uploadPath).getFile();
+            final File uploadFolder = new ClassPathResource("static" + File.separator + uploadPath).getFile();
             if (!uploadFolder.exists()) {
                 uploadFolder.mkdir();
             }

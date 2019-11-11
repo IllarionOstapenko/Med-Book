@@ -6,6 +6,10 @@ import com.book.medecinebook.repository.PatientRepository;
 import com.book.medecinebook.repository.VisitToDoctorRepository;
 import com.book.medecinebook.services.VisitToDoctorService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -37,12 +41,28 @@ public class VisitToDoctorServiceImpl implements VisitToDoctorService {
     }
 
     @Override
+    public Page<VisitToDoctor> findAll(Pageable pageable) {
+        return visitToDoctorRepository.findAll(pageable);
+    }
+
+    @Override
     public List<VisitToDoctor> findAllByPatientId(int id) {
         return visitToDoctorRepository.findAllByPatientId(id);
     }
 
+    @Override
+    public List<VisitToDoctor> findAllByDoctorId(int id) {
+        return visitToDoctorRepository.findAllByDoctorId(id);
+    }
+
     public List<VisitToDoctor> findAllByDate(LocalDate date) {
         return visitToDoctorRepository.findAllByDateOfVisit(date);
+    }
+
+    @Override
+    public List<VisitToDoctor> findAllByDoctorIdAndDateOfVisit(int id, LocalDate dateOfVisit) {
+        doctorRepository.findById(id);
+        return visitToDoctorRepository.findAllByDoctorIdAndDateOfVisit(id, dateOfVisit);
     }
 
     @Override
@@ -59,6 +79,5 @@ public class VisitToDoctorServiceImpl implements VisitToDoctorService {
     public List<VisitToDoctor> findAllByPatientAndDateBefore(int id) {
         return visitToDoctorRepository.findAllByPatientIdAndDateOfVisitBefore(id, LocalDate.now());
     }
-
 
 }

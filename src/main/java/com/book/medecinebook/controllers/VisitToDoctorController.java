@@ -2,11 +2,13 @@ package com.book.medecinebook.controllers;
 
 
 import com.book.medecinebook.models.CustomResponse;
-import com.book.medecinebook.models.Patient;
 import com.book.medecinebook.models.VisitToDoctor;
 import com.book.medecinebook.repository.VisitToDoctorRepository;
 import com.book.medecinebook.services.VisitToDoctorService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -23,14 +25,9 @@ public class VisitToDoctorController {
 
     @PostMapping("/create/visit&doctor={doctorId}&patient={patientId}")
     public CustomResponse createVisitToDoctor(@RequestBody VisitToDoctor visitToDoctor, @PathVariable int doctorId, @PathVariable int patientId) {
-//        System.out.println(visitToDoctor.getDateOfVisit().plusDays(1));
-//        this.localDate = visitToDoctor.getDateOfVisit();
-//        System.out.println(visitToDoctor.toDate);
-//        System.out.println(localDate.toDate());
         visitToDoctorService.create(visitToDoctor, doctorId, patientId);
         System.out.println("visit to doctor work");
         return new CustomResponse("visit is create", true);
-//        return null;
     }
 
     @GetMapping("/getAllVisits")
@@ -43,6 +40,11 @@ public class VisitToDoctorController {
     public List<VisitToDoctor> getByPatientId(@PathVariable int patientId) {
         System.out.println("getByPatient work");
         return visitToDoctorService.findAllByPatientId(patientId);
+    }
+
+    @GetMapping("/getAllByDoctorId&doctorId={doctorId}")
+    public List<VisitToDoctor> getByDoctorId(@PathVariable int doctorId) {
+        return visitToDoctorService.findAllByDoctorId(doctorId);
     }
 
     @GetMapping("/secondTest")
@@ -64,8 +66,14 @@ public class VisitToDoctorController {
     }
 
     @GetMapping("/getAllByDateOfVisits")
+
     public List<VisitToDoctor> getAllByDateOfVisits() {
         return visitToDoctorRepository.findAllByDateOfVisit(LocalDate.now());
+    }
+
+    @GetMapping("/getAllByDoctorIdAndDateOfVisits&doctorId={doctorId}")
+    public List<VisitToDoctor> getAllByDoctorIdAndDateOfVisits(@PathVariable int doctorId) {
+        return visitToDoctorService.findAllByDoctorIdAndDateOfVisit(doctorId, LocalDate.now());
     }
 
     @PostMapping("/conclusion&visitId={visitId}")
@@ -75,9 +83,31 @@ public class VisitToDoctorController {
         System.out.println(conclusion);
         System.out.println(visitId);
         visitToDoctorService.save(byId);
-        return new CustomResponse("ok", true);
+        return new CustomResponse("conclusion saved", true);
     }
 
+//
+//    @GetMapping("/visitToDoctor")
+//    public Page<VisitToDoctor> find(Pageable pageable) {
+//        System.out.println("visitToDoctor worksdsdasdas");
+//        return visitToDoctorService.findAll(pageable);
+//    }
+
+    @GetMapping("/visitToDoctor")
+    public List<VisitToDoctor> list() {
+        System.out.println("BLALlasl");
+        return visitToDoctorRepository.findAll();
+    }
+
+    @GetMapping("/visits&page={page}&size={size}")
+    public Page<VisitToDoctor> test(@PathVariable int page, @PathVariable int size) {
+        Pageable firs = PageRequest.of(page, size);
+        System.out.println("VISITS WORKING");
+        System.out.println(page);
+        System.out.println(size);
+//        System.out.println(pageable);
+        return visitToDoctorRepository.findAll(firs);
+    }
 
 
 }

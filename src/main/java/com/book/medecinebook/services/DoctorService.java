@@ -12,10 +12,5 @@ public interface DoctorService extends UserDetailsService {
 
     List<Doctor> findAll();
 
-    Optional<Doctor> findOneById(Integer id);
-
-
-    List<Doctor> getAllDoctorsWithSpecialities(String speciality);
-
     List<Doctor> findBySpeciality(Speciality speciality);
 }

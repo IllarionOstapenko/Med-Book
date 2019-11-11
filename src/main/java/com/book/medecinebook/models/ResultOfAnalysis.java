@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,8 +18,8 @@ public class ResultOfAnalysis {
     private int id;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Analysis analysis;
-    private LocalDate localDate;
-    private double result;
+    private LocalDateTime localDateTime;
+    private String result;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Patient patient;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

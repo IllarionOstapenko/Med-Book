@@ -33,13 +33,6 @@ public class PatientController {
         return patientService.findAll();
     }
 
-    @PostMapping("/test")
-    public UserDetails test(@RequestParam String username) {
-        System.out.println("test work");
-        System.out.println(userService.loadUserByUsername(username));
-        return userService.loadUserByUsername(username);
-    }
-
     @GetMapping("/patient/username")
     public Patient findPatientByUsername(@RequestParam String username) {
         return patientService.findByUsername(username);

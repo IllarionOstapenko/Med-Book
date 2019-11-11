@@ -7,6 +7,7 @@ import java.util.List;
 
 
 public interface AnalysisRepository extends JpaRepository<Analysis, Integer> {
+    Analysis findById(int id);
 
     List<Analysis> findAll();
 }

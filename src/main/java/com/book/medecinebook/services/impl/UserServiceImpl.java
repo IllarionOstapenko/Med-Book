@@ -1,21 +1,19 @@
 package com.book.medecinebook.services.impl;
 
-import com.book.medecinebook.models.Doctor;
 import com.book.medecinebook.models.User;
 import com.book.medecinebook.repository.UserRepository;
 import com.book.medecinebook.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
     private UserRepository userRepository;
 
     @Override
@@ -30,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findOneById(Integer id) {
+    public User findById(int id) {
         return userRepository.findById(id);
     }
 
@@ -42,18 +40,6 @@ public class UserServiceImpl implements UserService {
     public User authUser() {
         return userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
     }
-
-    @Override
-    public List<User> get() {
-//        userRepository.findAll().get().getDateOfBirth().plusDay(1);
-        return userRepository.findAll();
-    }
-
-    @Override
-    public List<Doctor> getUsersByName() {
-        return userRepository.getUsersByName();
-    }
-
 
 
 }

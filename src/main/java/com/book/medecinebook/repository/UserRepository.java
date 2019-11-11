@@ -10,13 +10,11 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Integer> {
     User findUserByUsername(String username);
 
-    User findByUsername(String toString);
-
-    //    @Query("select u from User u where u.name like 'name'")
-    @Query("select users from Doctor users")
-    List<Doctor> getUsersByName();
+    User findByUsername(String username);
 
     List<User> findAll();
+
+    User findById(int id);
 
 
 }

@@ -4,6 +4,8 @@ import com.book.medecinebook.repository.PatientRepository;
 import com.book.medecinebook.models.Patient;
 import com.book.medecinebook.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,11 +31,6 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public List<Patient> findAll() {
         return patientRepository.findAll();
-    }
-
-    @Override
-    public Optional<Patient> findOneById(Integer id) {
-        return patientRepository.findById(id);
     }
 
     @Override

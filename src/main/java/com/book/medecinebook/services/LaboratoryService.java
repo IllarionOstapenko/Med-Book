@@ -10,5 +10,4 @@ public interface LaboratoryService extends UserDetailsService {
 
     List<Laboratory> findAll();
 
-    Laboratory findOneById(Integer id);
 }

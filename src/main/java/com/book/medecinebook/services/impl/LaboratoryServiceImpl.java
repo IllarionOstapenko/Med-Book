@@ -1,9 +1,9 @@
 package com.book.medecinebook.services.impl;
 
-import com.book.medecinebook.repository.LaboratoryRepository;
 import com.book.medecinebook.models.Laboratory;
+import com.book.medecinebook.repository.LaboratoryRepository;
 import com.book.medecinebook.services.LaboratoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,12 +11,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class LaboratoryServiceImpl implements LaboratoryService {
 
-    @Autowired
     private LaboratoryRepository laboratoryRepository;
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -31,11 +30,6 @@ public class LaboratoryServiceImpl implements LaboratoryService {
     @Override
     public List<Laboratory> findAll() {
         return laboratoryRepository.findAll();
-    }
-
-    @Override
-    public Laboratory findOneById(Integer id) {
-        return null;
     }
 
     @Override
