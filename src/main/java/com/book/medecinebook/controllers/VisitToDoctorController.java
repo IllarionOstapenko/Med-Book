@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -47,9 +48,18 @@ public class VisitToDoctorController {
         return visitToDoctorService.findAllByDoctorId(doctorId);
     }
 
-    @GetMapping("/secondTest")
+    @PostMapping("/secondTest")
     public List<VisitToDoctor> secondTest(@RequestBody LocalDate dateOfVisit) {
+        System.out.println(dateOfVisit);
+
         return visitToDoctorService.findAllByDate(dateOfVisit);
+    }
+
+    @PostMapping("/thirdTest&doctorId={doctorId}")
+    public List<VisitToDoctor> thirdTest(@PathVariable int doctorId, @RequestBody LocalDate date) {
+        System.out.println(doctorId);
+        System.out.println(date);
+        return visitToDoctorService.findAllByDoctorIdAndDateOfVisit(doctorId, date);
     }
 
 
@@ -66,13 +76,13 @@ public class VisitToDoctorController {
     }
 
     @GetMapping("/getAllByDateOfVisits")
-
     public List<VisitToDoctor> getAllByDateOfVisits() {
         return visitToDoctorRepository.findAllByDateOfVisit(LocalDate.now());
     }
 
     @GetMapping("/getAllByDoctorIdAndDateOfVisits&doctorId={doctorId}")
     public List<VisitToDoctor> getAllByDoctorIdAndDateOfVisits(@PathVariable int doctorId) {
+        System.out.println("doctorId");
         return visitToDoctorService.findAllByDoctorIdAndDateOfVisit(doctorId, LocalDate.now());
     }
 
@@ -107,6 +117,21 @@ public class VisitToDoctorController {
         System.out.println(size);
 //        System.out.println(pageable);
         return visitToDoctorRepository.findAll(firs);
+    }
+
+
+    @GetMapping("/visitToDoctor&doctorId={doctorId}")
+    public List<VisitToDoctor> findByDoctorIdAndDateAfter(@PathVariable int doctorId) {
+        System.out.println("visits working ");
+        return visitToDoctorService.findAllByDoctorIdAndDateOfVisitAfter(doctorId);
+    }
+
+
+    @PostMapping("/fourthTest&doctorId={doctorId}")
+    public List<VisitToDoctor> thirdTest(@PathVariable int doctorId, @RequestBody VisitToDoctor visitToDoctor) {
+        System.out.println(doctorId);
+        System.out.println(visitToDoctor);
+        return visitToDoctorService.findAllByDoctorIdAndDateOfVisit(doctorId, visitToDoctor);
     }
 
 

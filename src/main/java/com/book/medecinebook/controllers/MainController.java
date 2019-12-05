@@ -22,6 +22,10 @@ import java.util.stream.Stream;
 public class MainController {
 
     private UserService userService;
+    @GetMapping("/home")
+    public String home(){
+        return "home";
+    }
 
     @GetMapping("/authUser")
     public User authUser() {

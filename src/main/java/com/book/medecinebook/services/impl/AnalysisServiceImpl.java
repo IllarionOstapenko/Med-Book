@@ -1,14 +1,11 @@
 package com.book.medecinebook.services.impl;
 
 import com.book.medecinebook.models.Analysis;
-import com.book.medecinebook.models.CustomResponse;
 import com.book.medecinebook.repository.AnalysisRepository;
 import com.book.medecinebook.services.AnalysisService;
-import com.sun.deploy.net.HttpResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.Response;
 import java.util.List;
 
 @AllArgsConstructor

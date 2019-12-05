@@ -28,7 +28,9 @@ public interface VisitToDoctorRepository extends JpaRepository<VisitToDoctor, In
 
     List<VisitToDoctor> findAllByDoctorIdAndDateOfVisit(int id, LocalDate dateOfVisit);
 
-    List<VisitToDoctor> findAllByPatientIdAndDateOfVisitAfter(int id, LocalDate localDate);
+    List<VisitToDoctor> findAllByDoctorIdAndDateOfVisitAfter(int id, LocalDate dateOfVisit);
+
+    List<VisitToDoctor> findAllByPatientIdAndDateOfVisitAfterAndConclusionIsNull(int id, LocalDate localDate);
 
     List<VisitToDoctor> findAllByPatientIdAndDateOfVisitBefore(int id, LocalDate localDate);
 

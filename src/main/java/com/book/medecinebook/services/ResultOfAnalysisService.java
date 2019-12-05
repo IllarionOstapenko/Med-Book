@@ -12,4 +12,6 @@ public interface ResultOfAnalysisService {
     void create(ResultOfAnalysis resultOfAnalysis, int patientId, int userId);
 
     List<ResultOfAnalysis> findAllByPatientId(int id);
+
+    List<ResultOfAnalysis> findAllByPatientIdAndAnalyzesTitle(int id, String title);
 }

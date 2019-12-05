@@ -56,13 +56,21 @@ public class VisitToDoctorServiceImpl implements VisitToDoctorService {
     }
 
     public List<VisitToDoctor> findAllByDate(LocalDate date) {
-        return visitToDoctorRepository.findAllByDateOfVisit(date);
+        final LocalDate localDate = date.plusDays(1);
+        return visitToDoctorRepository.findAllByDateOfVisit(localDate);
     }
 
     @Override
     public List<VisitToDoctor> findAllByDoctorIdAndDateOfVisit(int id, LocalDate dateOfVisit) {
-        doctorRepository.findById(id);
+//        doctorRepository.findById(id);
+//        final LocalDate date = dateOfVisit.plusDays(1)
         return visitToDoctorRepository.findAllByDoctorIdAndDateOfVisit(id, dateOfVisit);
+    }
+
+    @Override
+    public List<VisitToDoctor> findAllByDoctorIdAndDateOfVisit(int id, VisitToDoctor visitToDoctor) {
+
+        return visitToDoctorRepository.findAllByDoctorIdAndDateOfVisit(id, visitToDoctor.getDateOfVisit());
     }
 
     @Override
@@ -72,7 +80,7 @@ public class VisitToDoctorServiceImpl implements VisitToDoctorService {
 
     @Override
     public List<VisitToDoctor> findAllByPatientIdAndDateAfter(int id) {
-        return visitToDoctorRepository.findAllByPatientIdAndDateOfVisitAfter(id, LocalDate.now());
+        return visitToDoctorRepository.findAllByPatientIdAndDateOfVisitAfterAndConclusionIsNull(id, LocalDate.now().minusDays(1));
     }
 
     @Override
@@ -80,4 +88,10 @@ public class VisitToDoctorServiceImpl implements VisitToDoctorService {
         return visitToDoctorRepository.findAllByPatientIdAndDateOfVisitBefore(id, LocalDate.now());
     }
 
+
+    @Override
+    public List<VisitToDoctor> findAllByDoctorIdAndDateOfVisitAfter(int id) {
+        System.out.println(LocalDate.now());
+        return visitToDoctorRepository.findAllByDoctorIdAndDateOfVisitAfter(id, LocalDate.now());
+    }
 }

@@ -43,6 +43,7 @@ public class DoctorController {
 
     @GetMapping("/doctor/speciality/{speciality}")
     public List<Doctor> getDoctorsBySpeciality(@PathVariable String speciality) {
+        System.out.println(speciality);
         return doctorService.findBySpeciality(Speciality.valueOf(speciality));
     }
 

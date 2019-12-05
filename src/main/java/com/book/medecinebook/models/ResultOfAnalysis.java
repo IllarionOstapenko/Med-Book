@@ -19,7 +19,7 @@ public class ResultOfAnalysis {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Analysis analysis;
     private LocalDateTime localDateTime;
-    private String result;
+    private int result;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Patient patient;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

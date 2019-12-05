@@ -20,15 +20,19 @@ public interface VisitToDoctorService {
 
     List<VisitToDoctor> findAllByPatientId(int id);
 
-    List<VisitToDoctor> findAllByDoctorId(int id);
-
     List<VisitToDoctor> findAllByDate(LocalDate date);
-
-    List<VisitToDoctor> findAllByDoctorIdAndDateOfVisit(int id, LocalDate dateOfVisit);
 
     List<VisitToDoctor> findAllByPatientIdAndDateAfter(int id);
 
     List<VisitToDoctor> findAllByPatientAndDateBefore(int id);
+
+    List<VisitToDoctor> findAllByDoctorId(int id);
+
+    List<VisitToDoctor> findAllByDoctorIdAndDateOfVisit(int id, LocalDate dateOfVisit);
+
+    List<VisitToDoctor> findAllByDoctorIdAndDateOfVisit(int id, VisitToDoctor visitToDoctor);
+
+    List<VisitToDoctor> findAllByDoctorIdAndDateOfVisitAfter(int id);
 
 
 }

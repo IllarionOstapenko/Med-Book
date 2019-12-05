@@ -37,12 +37,17 @@ public class ResultOfAnalysisServiceImpl implements ResultOfAnalysisService {
         resultOfAnalysis.setUser(userRepository.findById(userId));
         resultOfAnalysis.setLocalDateTime(LocalDateTime.now());
         resultOfAnalysis.setAnalysis(analysisId);
-        resultOfAnalysis.setResult(resultOfAnalysis.getResult() + analysisId.getUnit());
+        resultOfAnalysis.setResult(resultOfAnalysis.getResult());
         resultOfAnalysisRepository.save(resultOfAnalysis);
     }
 
     @Override
     public List<ResultOfAnalysis> findAllByPatientId(int id) {
         return resultOfAnalysisRepository.findAllByPatientId(id);
+    }
+
+    @Override
+    public List<ResultOfAnalysis> findAllByPatientIdAndAnalyzesTitle(int id, String title) {
+        return resultOfAnalysisRepository.findAllByPatientIdAndAnalysisTitle(id, title);
     }
 }
