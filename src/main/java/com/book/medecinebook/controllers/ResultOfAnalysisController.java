@@ -19,13 +19,9 @@ import java.util.List;
 public class ResultOfAnalysisController {
     private ResultOfAnalysisService resultOfAnalysisService;
     private PatientService patientService;
-    private UserService userService;
-
-    private ResultOfAnalysisRepository resultOfAnalysisRepository;
 
     @PostMapping("/save/resultOfAnalysis")
     public CustomResponse saveResultOfAnalysis(@RequestBody ResultOfAnalysis resultOfAnalysis, @PathVariable int patientId) {
-//        transfer this field to service
         resultOfAnalysis.setPatient(patientService.findById(patientId));
         resultOfAnalysisService.save(resultOfAnalysis);
         return new CustomResponse("Result is saved", true);
@@ -52,7 +48,6 @@ public class ResultOfAnalysisController {
 
     @PostMapping("/getAllByPatientIdAndTitle&patientId={patientId}")
     public List<ResultOfAnalysis> findAllByPatientIdAndAnalysisTitle(@PathVariable int patientId, @RequestBody String title) {
-        System.out.println("loxxxxxxxxxx");
         return resultOfAnalysisService.findAllByPatientIdAndAnalyzesTitle(patientId, title);
     }
 

@@ -31,31 +31,12 @@ public class VisitToDoctorController {
         return new CustomResponse("visit is create", true);
     }
 
-    @GetMapping("/getAllVisits")
-    public List<VisitToDoctor> getAllVisits() {
-        System.out.println("getAllVisits works");
-        return visitToDoctorService.findAll();
-    }
-
-    @GetMapping("/getByPatientId&patient={patientId}")
-    public List<VisitToDoctor> getByPatientId(@PathVariable int patientId) {
-        System.out.println("getByPatient work");
-        return visitToDoctorService.findAllByPatientId(patientId);
-    }
-
     @GetMapping("/getAllByDoctorId&doctorId={doctorId}")
     public List<VisitToDoctor> getByDoctorId(@PathVariable int doctorId) {
         return visitToDoctorService.findAllByDoctorId(doctorId);
     }
 
-    @PostMapping("/secondTest")
-    public List<VisitToDoctor> secondTest(@RequestBody LocalDate dateOfVisit) {
-        System.out.println(dateOfVisit);
-
-        return visitToDoctorService.findAllByDate(dateOfVisit);
-    }
-
-    @PostMapping("/thirdTest&doctorId={doctorId}")
+    @PostMapping("/findAllByDate&doctorId={doctorId}")
     public List<VisitToDoctor> thirdTest(@PathVariable int doctorId, @RequestBody LocalDate date) {
         System.out.println(doctorId);
         System.out.println(date);
@@ -75,11 +56,6 @@ public class VisitToDoctorController {
         return visitToDoctorService.findAllByPatientAndDateBefore(patientId);
     }
 
-    @GetMapping("/getAllByDateOfVisits")
-    public List<VisitToDoctor> getAllByDateOfVisits() {
-        return visitToDoctorRepository.findAllByDateOfVisit(LocalDate.now());
-    }
-
     @GetMapping("/getAllByDoctorIdAndDateOfVisits&doctorId={doctorId}")
     public List<VisitToDoctor> getAllByDoctorIdAndDateOfVisits(@PathVariable int doctorId) {
         System.out.println("doctorId");
@@ -95,14 +71,6 @@ public class VisitToDoctorController {
         visitToDoctorService.save(byId);
         return new CustomResponse("conclusion saved", true);
     }
-
-//
-//    @GetMapping("/visitToDoctor")
-//    public Page<VisitToDoctor> find(Pageable pageable) {
-//        System.out.println("visitToDoctor worksdsdasdas");
-//        return visitToDoctorService.findAll(pageable);
-//    }
-
     @GetMapping("/visitToDoctor")
     public List<VisitToDoctor> list() {
         System.out.println("BLALlasl");

@@ -1,5 +1,6 @@
 package com.book.medecinebook.models;
 
+import com.book.medecinebook.confins.LocalDateConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class VisitToDoctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull
+    @Convert(converter = LocalDateConverter.class)
     private LocalDate dateOfVisit;
     private String timeOfVisit;
     private String conclusion;
