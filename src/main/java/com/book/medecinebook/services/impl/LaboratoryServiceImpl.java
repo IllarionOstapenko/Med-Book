@@ -15,8 +15,8 @@ import java.util.List;
 @Service
 public class LaboratoryServiceImpl implements LaboratoryService {
 
-    private LaboratoryRepository laboratoryRepository;
-    private PasswordEncoder passwordEncoder;
+    private final LaboratoryRepository laboratoryRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void create(Laboratory laboratory) {

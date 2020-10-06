@@ -22,8 +22,8 @@ import java.io.IOException;
 import java.util.Collections;
 
 public class LoginFilter extends AbstractAuthenticationProcessingFilter {
-    private UserService userDetailsService;
-//    private JSONObject jsonObject;
+
+    private final UserService userDetailsService;
 
     public LoginFilter(String url, AuthenticationManager authManager, UserService userDetailsService) {
         super(new AntPathRequestMatcher(url));
@@ -49,7 +49,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
         // if auth process if success we jump to line 65 successfulAuthentication()
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
-                            user.getUsername(),
+                        user.getUsername(),
                         user.getPassword(),
                         Collections.emptyList()
                 )

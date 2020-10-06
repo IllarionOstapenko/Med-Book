@@ -12,9 +12,6 @@ public class CustomResponse {
         this.success = success;
     }
 
-    public CustomResponse() {
-    }
-
     @Override
     public String toString() {
         return "CustomResponse{" +

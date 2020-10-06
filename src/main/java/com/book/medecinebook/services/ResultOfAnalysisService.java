@@ -1,6 +1,5 @@
 package com.book.medecinebook.services;
 
-import com.book.medecinebook.models.Analysis;
 import com.book.medecinebook.models.ResultOfAnalysis;
 
 import java.util.List;

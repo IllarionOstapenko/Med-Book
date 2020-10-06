@@ -12,7 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 public class AnalysisController {
-    private AnalysisService analysisService;
+
+    private final AnalysisService analysisService;
 
     @PostMapping("/save/analysis")
     public CustomResponse save(@RequestBody Analysis analysis) {

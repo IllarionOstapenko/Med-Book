@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class AnalysisServiceImpl implements AnalysisService {
 
-    private AnalysisRepository analysisRepository;
+    private final AnalysisRepository analysisRepository;
 
     @Override
     public void save(Analysis analysis) {

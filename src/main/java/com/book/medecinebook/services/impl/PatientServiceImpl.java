@@ -1,25 +1,21 @@
 package com.book.medecinebook.services.impl;
 
-import com.book.medecinebook.repository.PatientRepository;
 import com.book.medecinebook.models.Patient;
+import com.book.medecinebook.repository.PatientRepository;
 import com.book.medecinebook.services.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class PatientServiceImpl implements PatientService {
-    @Autowired
-    private PatientRepository patientRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PatientRepository patientRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void create(Patient patient) {

@@ -17,8 +17,8 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RestController
 public class ResultOfAnalysisController {
-    private ResultOfAnalysisService resultOfAnalysisService;
-    private PatientService patientService;
+    private final ResultOfAnalysisService resultOfAnalysisService;
+    private final PatientService patientService;
 
     @PostMapping("/save/resultOfAnalysis")
     public CustomResponse saveResultOfAnalysis(@RequestBody ResultOfAnalysis resultOfAnalysis, @PathVariable int patientId) {
@@ -31,15 +31,10 @@ public class ResultOfAnalysisController {
     public CustomResponse createResultOfAnalysis(@RequestBody ResultOfAnalysis resultOfAnalysis,
                                                  @PathVariable int patientId,
                                                  @PathVariable int userId) {
-        System.out.println("result works");
-        System.out.println(resultOfAnalysis);
-        System.out.println(resultOfAnalysis.getAnalysis());
-        System.out.println(resultOfAnalysis.getPatient());
         resultOfAnalysisService.create(resultOfAnalysis, patientId, userId);
 
         return new CustomResponse("Result is created", true);
     }
-
 
     @GetMapping("/getAllAnalysisByPatientId&patientId={patientId}")
     public List<ResultOfAnalysis> getAllResultOfAnalysisByPatientId(@PathVariable int patientId) {

@@ -22,8 +22,6 @@ public class RequestProcessingJWTFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         Authentication authentication = null;
-//        System.out.println(authentication + " ++++authentication");
-
 
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         // and check presents of token in header Authorization

@@ -36,8 +36,6 @@ public class Laboratory extends User {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(role.name()));
-
-//        authorities.add(new SimpleGrantedAuthority(Role.DOCTOR.name()));
         return authorities;
     }
 

@@ -15,8 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class DoctorServiceImpl implements DoctorService {
-    private DoctorRepository doctorRepository;
-    private PasswordEncoder passwordEncoder;
+    private final DoctorRepository doctorRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override

@@ -15,21 +15,16 @@ import java.util.List;
 @AllArgsConstructor
 public class PatientController {
 
-    private PatientService patientService;
-    private UserService userService;
-
+    private final PatientService patientService;
 
     @PostMapping("/create/patient")
     public CustomResponse save(@RequestBody Patient patient) {
-        System.out.println(patient);
-        System.out.println(patient.getDateOfBirth());
         patientService.create(patient);
         return new CustomResponse("ok!", true);
     }
 
     @GetMapping("/patients")
     public List<Patient> patients() {
-        System.out.println("Patients works");
         return patientService.findAll();
     }
 

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface VisitToDoctorService {
+    
     void create(VisitToDoctor visitToDoctor, int doctorId, int patientId);
 
     void save(VisitToDoctor visitToDoctor);
@@ -17,10 +18,6 @@ public interface VisitToDoctorService {
     Page<VisitToDoctor> findAll(Pageable pageable);
 
     VisitToDoctor findById(int id);
-
-    List<VisitToDoctor> findAllByPatientId(int id);
-
-    List<VisitToDoctor> findAllByDate(LocalDate date);
 
     List<VisitToDoctor> findAllByPatientIdAndDateAfter(int id);
 
@@ -33,6 +30,4 @@ public interface VisitToDoctorService {
     List<VisitToDoctor> findAllByDoctorIdAndDateOfVisit(int id, VisitToDoctor visitToDoctor);
 
     List<VisitToDoctor> findAllByDoctorIdAndDateOfVisitAfter(int id);
-
-
 }

@@ -16,10 +16,10 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class ResultOfAnalysisServiceImpl implements ResultOfAnalysisService {
-    private ResultOfAnalysisRepository resultOfAnalysisRepository;
-    private AnalysisRepository analysisRepository;
-    private PatientRepository patientRepository;
-    private UserRepository userRepository;
+    private  final ResultOfAnalysisRepository resultOfAnalysisRepository;
+    private final AnalysisRepository analysisRepository;
+    private final PatientRepository patientRepository;
+    private final UserRepository userRepository;
 
     @Override
     public void save(ResultOfAnalysis resultOfAnalysis) {

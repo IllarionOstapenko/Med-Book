@@ -1,35 +1,28 @@
 package com.book.medecinebook.controllers;
 
-import com.book.medecinebook.models.Doctor;
-import com.book.medecinebook.models.Patient;
 import com.book.medecinebook.models.User;
-import com.book.medecinebook.repository.UserRepository;
-import com.book.medecinebook.services.PatientService;
 import com.book.medecinebook.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Stream;
 
 @AllArgsConstructor
 @RestController
 @CrossOrigin(origins = "*")
 public class MainController {
 
-    private UserService userService;
+    private final UserService userService;
+
     @GetMapping("/home")
-    public String home(){
+    public String home() {
         return "home";
     }
 
     @GetMapping("/authUser")
     public User authUser() {
-        System.out.println("Auth USER");
         return userService.authUser();
     }
 

@@ -7,9 +7,7 @@ import com.book.medecinebook.repository.VisitToDoctorRepository;
 import com.book.medecinebook.services.VisitToDoctorService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,9 +17,9 @@ import java.util.List;
 @AllArgsConstructor
 public class VisitToDoctorServiceImpl implements VisitToDoctorService {
 
-    private VisitToDoctorRepository visitToDoctorRepository;
-    private DoctorRepository doctorRepository;
-    private PatientRepository patientRepository;
+    private final VisitToDoctorRepository visitToDoctorRepository;
+    private final DoctorRepository doctorRepository;
+    private final PatientRepository patientRepository;
 
     @Override
     public void create(VisitToDoctor visitToDoctor, int doctorId, int patientId) {
@@ -46,24 +44,13 @@ public class VisitToDoctorServiceImpl implements VisitToDoctorService {
     }
 
     @Override
-    public List<VisitToDoctor> findAllByPatientId(int id) {
-        return visitToDoctorRepository.findAllByPatientId(id);
-    }
-
-    @Override
     public List<VisitToDoctor> findAllByDoctorId(int id) {
         return visitToDoctorRepository.findAllByDoctorId(id);
     }
 
-    public List<VisitToDoctor> findAllByDate(LocalDate date) {
-        final LocalDate localDate = date.plusDays(1);
-        return visitToDoctorRepository.findAllByDateOfVisit(localDate);
-    }
 
     @Override
     public List<VisitToDoctor> findAllByDoctorIdAndDateOfVisit(int id, LocalDate dateOfVisit) {
-//        doctorRepository.findById(id);
-//        final LocalDate date = dateOfVisit.plusDays(1)
         return visitToDoctorRepository.findAllByDoctorIdAndDateOfVisit(id, dateOfVisit);
     }
 

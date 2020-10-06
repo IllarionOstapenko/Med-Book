@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public void create(User user) {
@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findUserByUsername(username);
     }
 
+    @Override
     public User authUser() {
         return userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
     }
